@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include hoa_alliance *.css
+recursive-include hoa_alliance *.csv
+recursive-include hoa_alliance *.html
+recursive-include hoa_alliance *.ico
+recursive-include hoa_alliance *.js
+recursive-include hoa_alliance *.json
+recursive-include hoa_alliance *.md
+recursive-include hoa_alliance *.png
+recursive-include hoa_alliance *.py
+recursive-include hoa_alliance *.svg
+recursive-include hoa_alliance *.txt
+recursive-exclude hoa_alliance *.pyc
