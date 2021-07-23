@@ -32,7 +32,12 @@ app_license = "MIT"
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
-# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+doctype_list_js = {
+	"Project" : "public/js/project_list.js",
+	"Task" : "public/js/task_list.js",
+	"Issue" : "public/js/issue_list.js",
+	"Request for Quotation":"public/js/request_for_quotation_list.js",
+	}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
@@ -53,6 +58,9 @@ app_license = "MIT"
 # automatically create page for each record of this doctype
 # website_generators = ["Web Page"]
 
+# website_route_rules = [
+# 	{"from_route": "/rfq", "to_route": "/list"}
+# ]
 # Installation
 # ------------
 
@@ -89,13 +97,19 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"Project": {
+		"on_update": "hoa_alliance.hoa_alliance.api.update_connected_task_count",
+	},
+	"Issue": {
+		"on_update": "hoa_alliance.hoa_alliance.api.update_connected_task_count",
+	},
+	"Task": {
+		"on_update": "hoa_alliance.hoa_alliance.api.update_connected_task_count",
+		"after_delete": "hoa_alliance.hoa_alliance.api.update_connected_task_count",
+		"validate": "hoa_alliance.hoa_alliance.api.update_dependent_task_count_for_task_doctype"
+	}	
+}
 
 # Scheduled Tasks
 # ---------------
@@ -173,3 +187,23 @@ user_data_fields = [
 # 	"hoa_alliance.auth.validate"
 # ]
 
+fixtures = [
+      {
+        "dt": "Custom Field", 
+        "filters": [["name", "in", [
+				"Request for Quotation-required_by_due_date_cf",
+				"Request for Quotation-requester_cf",
+				"Issue-no_of_issue_connected_task_cf",
+				"Project-no_of_project_connected_task_cf",
+				"Task-no_of_dependent_task_cf"
+				]]]
+      },	
+
+      {
+        "dt": "List View Settings", 
+        "filters": [["name", "in", [
+					"Request for Quotation","Issue","Task","Project"
+					]]]
+      }		   			     
+
+]

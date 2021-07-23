@@ -1,0 +1,58 @@
+[
+ {
+  "disable_auto_refresh": 0,
+  "disable_count": 0,
+  "disable_sidebar_stats": 0,
+  "docstatus": 0,
+  "doctype": "List View Settings",
+  "fields": "[{\"fieldname\":\"subject\",\"label\":\"Subject\"},{\"fieldname\":\"status\",\"label\":\"Status\"},{\"fieldname\":\"project\",\"label\":\"Project\"},{\"fieldname\":\"company\",\"label\":\"Company\"},{\"fieldname\":\"issue\",\"label\":\"Issue\"},{\"fieldname\":\"parent_task\",\"label\":\"Parent Task\"},{\"fieldname\":\"exp_start_date\",\"label\":\"Expected Start Date\"},{\"fieldname\":\"exp_end_date\",\"label\":\"Expected End Date\"},{\"fieldname\":\"no_of_dependent_task_cf\",\"label\":\"Dependent #\"}]",
+  "modified": "2021-07-23 08:33:25.603779",
+  "name": "Task",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "total_fields": "10"
+ },
+ {
+  "disable_auto_refresh": 0,
+  "disable_count": 0,
+  "disable_sidebar_stats": 0,
+  "docstatus": 0,
+  "doctype": "List View Settings",
+  "fields": "[{\"fieldname\":\"project_name\",\"label\":\"Project Name\"},{\"fieldname\":\"status_field\",\"label\":\"Status\"},{\"fieldname\":\"project_type\",\"label\":\"Project Type\"},{\"fieldname\":\"company\",\"label\":\"Company\"},{\"fieldname\":\"no_of_project_connected_task_cf\",\"label\":\"Task #\"},{\"fieldname\":\"expected_start_date\",\"label\":\"Expected Start Date\"},{\"fieldname\":\"expected_end_date\",\"label\":\"Expected End Date\"}]",
+  "modified": "2021-07-23 08:14:35.475580",
+  "name": "Project",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "total_fields": "10"
+ },
+ {
+  "disable_auto_refresh": 0,
+  "disable_count": 0,
+  "disable_sidebar_stats": 0,
+  "docstatus": 0,
+  "doctype": "List View Settings",
+  "fields": "[{\"fieldname\":\"subject\",\"label\":\"Subject\"},{\"fieldname\":\"status_field\",\"label\":\"Status\"},{\"fieldname\":\"company\",\"label\":\"Company\"},{\"fieldname\":\"raised_by\",\"label\":\"Raised By (Email)\"},{\"fieldname\":\"priority\",\"label\":\"Priority\"},{\"fieldname\":\"no_of_issue_connected_task_cf\",\"label\":\"Task #\"},{\"fieldname\":\"opening_date\",\"label\":\"Opening Date\"}]",
+  "modified": "2021-07-23 08:38:24.615562",
+  "name": "Issue",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "total_fields": "10"
+ },
+ {
+  "disable_auto_refresh": 0,
+  "disable_count": 0,
+  "disable_sidebar_stats": 0,
+  "docstatus": 0,
+  "doctype": "List View Settings",
+  "fields": "[{\"fieldname\":\"name\",\"label\":\"Name\"},{\"fieldname\":\"status_field\",\"label\":\"Status\"},{\"fieldname\":\"company\",\"label\":\"Company\"},{\"fieldname\":\"requester_cf\",\"label\":\"Requester\"},{\"fieldname\":\"transaction_date\",\"label\":\"Date\"},{\"fieldname\":\"required_by_due_date_cf\",\"label\":\"Quotation Required By Date\"}]",
+  "modified": "2021-07-23 08:42:20.279748",
+  "name": "Request for Quotation",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "total_fields": "10"
+ }
+]
