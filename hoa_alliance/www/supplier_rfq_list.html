@@ -1,0 +1,89 @@
+{% extends "templates/web.html" %}
+
+{% block title %}
+	{{ title  }}
+{% endblock %}
+
+{% block header %}
+	<h2>{{ title  }}</h2>
+{% endblock %}
+
+
+{% block page_content %}
+<br>
+<div class="row">
+    <div class="col-6">
+        <b><div class="rfq-supplier">Supplier : {{ supplier }}</div></b>
+	</div>
+</div>
+<br>
+<div class="rfq-content" style="margin-top:15px">
+	<div id="order-container">
+			<div id="rfq-items">
+				<div class="row cart-item-header">
+					<div class="col-xs-2">
+						{{ _("Quotation ID") }}
+					</div>
+					<div class="col-xs-2 text-left">
+						{{ _("Supplier RFQ Status") }}
+					</div>
+					<div class="col-xs-2  text-left">
+						{{ _("Company") }}
+					</div>
+					<div class="col-xs-2 text-left">
+						{{ _("Requestor") }}
+					</div>
+					<div class="col-xs-2 text-left">
+						{{ _("Requested Date") }}
+					</div>			
+					<div class="col-xs-2 text-left">
+						{{ _("Quotation (due) Date") }}
+					</div>									
+				</div>
+				<br>
+            {% if supplier_rfq_list %}
+            <div class="rfq-items">
+							{% for doc in supplier_rfq_list %}
+							<div class="web-list-item transaction-list-item">
+							
+								<a href="/rfq/{{ doc.name }}">
+									<div class="row">
+											<div class="col-xs-2">
+															{{ doc.name }}
+											</div>
+											<div class="col-xs-2">
+												<span class="indicator
+											{% if doc.supplier_rfq_status=="Applied" %}
+												blue">  {{ doc.supplier_rfq_status }}
+											{% elif doc.supplier_rfq_status=="Closed" %}
+												red"> {{ doc.supplier_rfq_status }}
+											{% elif doc.supplier_rfq_status=="Open" %}
+												green">  {{ doc.supplier_rfq_status }}
+											{% endif  %}
+												</span>					
+											 
+											</div>
+											<div class="col-xs-2 small">
+												{{ doc.company }}
+											</div>
+											<div class="col-xs-2 small">
+												{{ doc.requester }}
+											</div>								
+											<div class="col-xs-2 text-left small ">
+												{{ frappe.format_date(doc.requested_date) }}
+											</div>				
+											<div class="col-xs-2 text-left small ">
+												{{ frappe.format_date(doc.required_date) }}
+											</div>
+									</div>
+								</a>
+								
+							</div>
+							{% endfor %}
+            </div>
+            {% endif %}
+		</div>
+	</div>
+</div>
+
+{% endblock %}

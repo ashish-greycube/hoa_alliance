@@ -31,7 +31,7 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"Request for Quotation" : "public/js/request_for_quotation.js"}
 doctype_list_js = {
 	"Project" : "public/js/project_list.js",
 	"Task" : "public/js/task_list.js",
@@ -58,9 +58,9 @@ doctype_list_js = {
 # automatically create page for each record of this doctype
 # website_generators = ["Web Page"]
 
-# website_route_rules = [
-# 	{"from_route": "/rfq", "to_route": "/list"}
-# ]
+website_redirects = [
+    {"source": "/rfq", "target": "/supplier_rfq_list"},
+]
 # Installation
 # ------------
 
