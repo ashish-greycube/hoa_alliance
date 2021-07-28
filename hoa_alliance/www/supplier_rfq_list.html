@@ -37,48 +37,82 @@
 						{{ _("Requested Date") }}
 					</div>			
 					<div class="col-xs-2 text-left">
-						{{ _("Quotation (due) Date") }}
+						{{ _("RFQ Due Date") }}
 					</div>									
 				</div>
 				<br>
             {% if supplier_rfq_list %}
             <div class="rfq-items">
 							{% for doc in supplier_rfq_list %}
-							<div class="web-list-item transaction-list-item">
-							
-								<a href="/rfq/{{ doc.name }}">
-									<div class="row">
-											<div class="col-xs-2">
-															{{ doc.name }}
+								{% if doc.doc_name %}
+								<div class="web-list-item transaction-list-item">
+
+									{% if doc.supplier_rfq_status!="Closed" %}
+											<a href="{{ doc.name }}">
+												<div class="row">
+														<div class="col-xs-2">
+																		{{ doc.doc_name }}
+														</div>
+														<div class="col-xs-2">
+															<span class="indicator
+														{% if doc.supplier_rfq_status=="Applied" %}
+															yellow">  {{ doc.supplier_rfq_status }}
+														{% elif doc.supplier_rfq_status=="Closed" %}
+															red"> {{ doc.supplier_rfq_status }}
+														{% elif doc.supplier_rfq_status=="Open" %}
+															green">  {{ doc.supplier_rfq_status }}
+														{% endif  %}
+															</span>					
+														
+														</div>
+														<div class="col-xs-2 small">
+															{{ doc.company }}
+														</div>
+														<div class="col-xs-2 small">
+															{{ doc.requester }}
+														</div>								
+														<div class="col-xs-2 text-left small ">
+															{{ frappe.format_date(doc.requested_date) }}
+														</div>				
+														<div class="col-xs-2 text-left small ">
+															{{ frappe.format_date(doc.required_date) }}
+														</div>
+												</div>
+											</a>
+									{% else  %}
+											<div class="row">
+													<div class="col-xs-2">
+																	{{ doc.doc_name }}
+													</div>
+													<div class="col-xs-2">
+														<span class="indicator
+													{% if doc.supplier_rfq_status=="Applied" %}
+														yellow">  {{ doc.supplier_rfq_status }}
+													{% elif doc.supplier_rfq_status=="Closed" %}
+														red"> {{ doc.supplier_rfq_status }}
+													{% elif doc.supplier_rfq_status=="Open" %}
+														green">  {{ doc.supplier_rfq_status }}
+													{% endif  %}
+														</span>					
+													
+													</div>
+													<div class="col-xs-2 small">
+														{{ doc.company }}
+													</div>
+													<div class="col-xs-2 small">
+														{{ doc.requester }}
+													</div>								
+													<div class="col-xs-2 text-left small ">
+														{{ frappe.format_date(doc.requested_date) }}
+													</div>				
+													<div class="col-xs-2 text-left small ">
+														{{ frappe.format_date(doc.required_date) }}
+													</div>
 											</div>
-											<div class="col-xs-2">
-												<span class="indicator
-											{% if doc.supplier_rfq_status=="Applied" %}
-												blue">  {{ doc.supplier_rfq_status }}
-											{% elif doc.supplier_rfq_status=="Closed" %}
-												red"> {{ doc.supplier_rfq_status }}
-											{% elif doc.supplier_rfq_status=="Open" %}
-												green">  {{ doc.supplier_rfq_status }}
-											{% endif  %}
-												</span>					
-											 
-											</div>
-											<div class="col-xs-2 small">
-												{{ doc.company }}
-											</div>
-											<div class="col-xs-2 small">
-												{{ doc.requester }}
-											</div>								
-											<div class="col-xs-2 text-left small ">
-												{{ frappe.format_date(doc.requested_date) }}
-											</div>				
-											<div class="col-xs-2 text-left small ">
-												{{ frappe.format_date(doc.required_date) }}
-											</div>
-									</div>
-								</a>
-								
-							</div>
+									{% endif  %}
+								</div>
+								{% endif  %}	
+						
 							{% endfor %}
             </div>
             {% endif %}

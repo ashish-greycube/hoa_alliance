@@ -99,16 +99,19 @@ website_redirects = [
 
 doc_events = {
 	"Project": {
-		"on_update": "hoa_alliance.hoa_alliance.api.update_connected_task_count",
+		"on_update": "hoa_alliance.api.update_connected_task_count",
 	},
 	"Issue": {
-		"on_update": "hoa_alliance.hoa_alliance.api.update_connected_task_count",
+		"on_update": "hoa_alliance.api.update_connected_task_count",
 	},
 	"Task": {
-		"on_update": "hoa_alliance.hoa_alliance.api.update_connected_task_count",
-		"after_delete": "hoa_alliance.hoa_alliance.api.update_connected_task_count",
-		"validate": "hoa_alliance.hoa_alliance.api.update_dependent_task_count_for_task_doctype"
-	}	
+		"on_update": "hoa_alliance.api.update_connected_task_count",
+		"after_delete": "hoa_alliance.api.update_connected_task_count",
+		"validate": "hoa_alliance.api.update_dependent_task_count_for_task_doctype"
+	},
+	"Supplier Quotation"	:{
+		"after_insert" : "hoa_alliance.api.update_supplier_status_in_RFQ"
+	}
 }
 
 # Scheduled Tasks
