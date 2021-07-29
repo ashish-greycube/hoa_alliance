@@ -110,7 +110,9 @@ doc_events = {
 		"validate": "hoa_alliance.api.update_dependent_task_count_for_task_doctype"
 	},
 	"Supplier Quotation"	:{
-		"after_insert" : "hoa_alliance.api.update_supplier_status_in_RFQ"
+		"after_insert" : "hoa_alliance.api.update_supplier_status_in_RFQ",
+		"on_cancel": "hoa_alliance.api.update_quotation_count_from_supplier_quotation",
+		"on_submit": "hoa_alliance.api.update_quotation_count_from_supplier_quotation",
 	}
 }
 

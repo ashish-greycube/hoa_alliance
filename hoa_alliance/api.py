@@ -51,7 +51,7 @@ def update_supplier_status_in_RFQ(self,method):
 
 			doc_sup = doc_sup[0] if doc_sup else None
 			if  doc_sup:
-
+				# default
 				quote_status = _('To Review & Submit')
 				for item in doc.items:
 					sqi_count = frappe.db.sql("""
@@ -71,3 +71,29 @@ def update_supplier_status_in_RFQ(self,method):
 					if (sqi_count.count + self_count) == 0:
 						quote_status = _('Pending')
 					frappe.db.set_value('Request for Quotation Supplier', doc_sup.name, 'quote_status', quote_status)
+			# update count on draft stage 
+			update_quotation_count_in_rfq(rfq)					
+
+
+def update_quotation_count_from_supplier_quotation(self,method):
+	rfq_list = set([])
+	for item in self.items:
+		if item.request_for_quotation:
+			rfq_list.add(item.request_for_quotation)
+	for rfq in rfq_list:
+		update_quotation_count_in_rfq(rfq)
+		
+def update_quotation_count_in_rfq(rfq_name):
+	rfq=frappe.get_doc('Request for Quotation', rfq_name,ignore_permissions=True)
+	rfq_sup=rfq.get('suppliers')
+	total_supplier_quotation_cf=0
+	to_review_count_cf=0
+	if  rfq_sup:	
+		for supplier in rfq_sup:
+			if supplier.quote_status!='Pending':
+				total_supplier_quotation_cf+=1
+			if supplier.quote_status=='To Review & Submit':
+				to_review_count_cf+=1
+		frappe.db.set_value('Request for Quotation', rfq_name, 'total_supplier_quotation_cf', total_supplier_quotation_cf)
+		frappe.db.set_value('Request for Quotation', rfq_name, 'to_review_count_cf', to_review_count_cf)
+
